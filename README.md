@@ -2,10 +2,10 @@
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 ### 1. Prolog
-- [Catatan Rilis](/Prologue/Release%20Notes.md)
-- [Panduan Upgrade](/Prologue/Upgrade%20Guide.md)
-- [Panduan Kontribusi](/Prologue/Contribution%20Guide.md)
-- [Dokumentasi API](/Prologue/API%20Documentation.md)
+- [Catatan Rilis](/prologue/release_notes.md)
+- [Panduan Upgrade](/prologue/upgrade_guide.md)
+- [Panduan Kontribusi](/prologue/contribution_guide.md)
+- [Dokumentasi API](/prologue/api_documentation.md)
 
 ### 2. Mulai
 ### 4. Konsep Arsitektur
