@@ -88,7 +88,7 @@ public function view(User $user, Flight $flight)
 }
 ```
 
-Respons dan pesan kebijakan otorisasi dapat dengan mudah diambil menggunakan metode `Gate::inspect`:
+Respon dan pesan kebijakan otorisasi dapat dengan mudah diambil menggunakan metode `Gate::inspect`:
 
 ```$response = Gate::inspect('view', $flight);
 
@@ -101,3 +101,76 @@ if ($response->denied()) {
 }
 ```
 
+Selain itu, pesan khusus ini akan secara otomatis dikembalikan ke frontend Anda saat menggunakan metode pembantu seperti `$this->authorize` atau `Gate::authorize` dari rute atau pengontrol Anda.
+
+### Job Middleware
+>Middleware pekerjaan diimplementasikan oleh <a href="https://github.com/taylorotwell">Taylor Otwell</a>
+
+Middleware Pekerjaan memungkinkan Anda untuk membungkus logika kustom di sekitar pelaksanaan pekerjaan yang antri, mengurangi boilerplate dalam pekerjaan itu sendiri. Misalnya, dalam rilis Laravel sebelumnya, Anda mungkin telah membungkus logika metode `handle` pekerjaan dalam panggilan balik tingkat terbatas:
+
+```/**
+ * Jalankan pekerjaan.
+ *
+ * @return void
+ */
+public function handle()
+{
+    Redis::throttle('key')->block(0)->allow(1)->every(5)->then(function () {
+        info('Kunci diperoleh...');
+
+        // Tangani pekerjaan...
+    }, function () {
+        // Tidak bisa mendapatkan kunci...
+
+        return $this->release(5);
+    });
+}
+```
+
+Setelah membuat middleware, mereka mungkin dilampirkan ke pekerjaan dengan mengembalikannya dari metode `middleware` pekerjaan:
+
+```use App\Jobs\Middleware\RateLimited;
+
+/**
+ * Dapatkan middleware yang harus dilewati pekerjaan.
+ *
+ * @ mengembalikan array
+ */
+public function middleware()
+{
+    return [new RateLimited];
+}
+```
+
+### Koleksi Malas
+>Koleksi malas diimplementasikan oleh <a href="https://github.com/JosephSilber">Joseph Silber</a>.
+
+Banyak pengembang sudah menikmati <a href="/digging_deeper/collections">Koleksi metode</a> Laravel yang kuat. Untuk melengkapi kelas `Koleksi` yang sudah kuat, Laravel 6 memperkenalkan `LazyCollection`, yang memanfaatkan <a href="https://www.php.net/manual/en/language.generators.overview.php">generator</a> PHP untuk memungkinkan Anda bekerja dengan kumpulan data yang sangat besar sambil menjaga penggunaan memori tetap rendah.
+
+Misalnya, bayangkan aplikasi Anda perlu memproses file log multi-gigabyte sambil mengambil keuntungan dari metode pengumpulan Laravel untuk mengurai log. Alih-alih membaca seluruh file ke memori sekaligus, koleksi malas dapat digunakan untuk menyimpan hanya sebagian kecil file dalam memori pada waktu tertentu:
+
+```use App\LogEntry;
+use Illuminate\Support\LazyCollection;
+
+LazyCollection::make(function () {
+    $handle = fopen('log.txt', 'r');
+
+    while (($line = fgets($handle)) !== false) {
+        yield $line;
+    }
+})
+->chunk(4)
+->map(function ($lines) {
+    return LogEntry::fromLines($lines);
+})
+->each(function (LogEntry $logEntry) {
+    // Memproses entri log ...
+});
+```
+
+Atau, bayangkan Anda perlu mengulangi melalui 10.000 model Eloquent. Saat menggunakan koleksi Laravel tradisional, semua 10.000 model Eloquent harus dimuat ke memori pada saat yang sama:
+
+```$users = App\User::all()->filter(function ($user) {
+    return $user->id > 500;
+});
+```
