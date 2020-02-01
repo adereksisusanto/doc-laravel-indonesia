@@ -1,20 +1,16 @@
 # Catatan Rilis
-- [Skema Pembuatan Versi]()
-- [Kebijakan Dukungan]()
-- [Laravel 6]()
-
 <ul>
-<li><a href="#versioning-scheme">Versioning Scheme</a></li>
-<li><a href="#support-policy">Support Policy</a></li>
+<li><a href="#versioning-scheme">Skema Pembuatan Versi</a></li>
+<li><a href="#support-policy">Kebijakan Dukungan</a></li>
 <li><a href="#laravel-6">Laravel 6</a></li>
 </ul>
 
-## Skema Pembuatan Versi
+<h2><a href="#versioning-scheme"># Skema Pembuatan Versi</a></h2>
 Laravel dan paket pihak pertama lainnya mengikuti [Semantic Versioning](https://semver.org/). Rilis kerangka utama dirilis setiap enam bulan (Februari dan Agustus), sementara rilis minor dan tambalan dapat dirilis sesering setiap minggu. Rilis minor dan tambalan tidak boleh berisi pemecahan perubahan.
 
 Saat mereferensikan framework Laravel atau komponen-komponennya dari aplikasi atau paket Anda, Anda harus selalu menggunakan batasan versi seperti ^<b>6.0</b>, karena rilis utama Laravel menyertakan perubahan yang melanggar. Namun, kami berusaha untuk selalu memastikan Anda dapat memperbarui ke rilis utama baru dalam satu hari atau kurang.
 
-## Kebijakan Dukungan
+<h2><a href="#support-policy"># Kebijakan Dukungan</a></h2>
 Untuk rilis LTS, seperti Laravel 6, perbaikan bug disediakan selama 2 tahun dan perbaikan keamanan disediakan selama 3 tahun. Rilis ini menyediakan jendela dukungan dan pemeliharaan terpanjang. Untuk rilis umum, perbaikan bug diberikan selama 6 bulan dan perbaikan keamanan disediakan selama 1 tahun. Untuk semua perpustakaan tambahan, termasuk Lumen, hanya rilis terbaru yang menerima perbaikan bug. Selain itu, tinjau versi database yang [didukung oleh Laravel](/database/getting_started.md).
 
 <table>
@@ -60,8 +56,11 @@ Untuk rilis LTS, seperti Laravel 6, perbaikan bug disediakan selama 2 tahun dan 
 </tbody>
 </table>
 
-<h2><a href="#laravel-6">Laravel 6</a></h2>
+<h2><a href="#laravel-6"># Laravel 6</a></h2>
 Laravel 6 (LTS) melanjutkan peningkatan yang dibuat di Laravel 5.8 dengan memperkenalkan versi semantik, kompatibilitas dengan Laravel Vapor, peningkatan respons otorisasi, middleware pekerjaan, koleksi malas, peningkatan subquery, ekstraksi perancah ujung depan ke paket komposer `laravel / framework`, dan berbagai perbaikan bug lainnya dan peningkatan kegunaan.
 
 ### Versi Semantik
 Paket Laravel framework (`laravel / framework`) sekarang mengikuti standar versi semantik. Ini membuat kerangka konsisten dengan paket Laravel pihak pertama lainnya yang sudah mengikuti standar versi ini. Siklus rilis Laravel akan tetap tidak berubah.
+
+### Kompatibilitas Uap Laravel
+>Laravel Vapor dibangun oleh <a href="https://github.com/taylorotwell">Taylor Otwell</a>
