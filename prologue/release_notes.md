@@ -66,3 +66,38 @@ Paket Laravel framework (`laravel / framework`) sekarang mengikuti standar <a hr
 >Laravel Vapor dibangun oleh <a href="https://github.com/taylorotwell">Taylor Otwell</a>
 
 Laravel 6 menyediakan kompatibilitas dengan <a href="https://vapor.laravel.com/">Laravel Vapor</a>, sebuah platform penyebaran tanpa server skala-otomatis untuk Laravel. Vapor mengabstraksikan kompleksitas mengelola aplikasi Laravel pada AWS Lambda, serta menghubungkan aplikasi-aplikasi tersebut dengan antrian SQS, basis data, klaster Redis, jaringan, CloudFront CDN, dan banyak lagi.
+
+### Peningkatan Pengecualian Melalui Ignition
+Laravel 6 dikirimkan bersama <a href="https://github.com/facade/ignition">Ignition</a>, laman detail pengecualian sumber terbuka baru yang dibuat oleh Freek Van der Herten dan Marcel Pociot. Pengapian menawarkan banyak manfaat dibandingkan rilis sebelumnya, seperti peningkatan file kesalahan Blade dan penanganan nomor baris, solusi runnable untuk masalah umum, pengeditan kode, berbagi pengecualian, dan peningkatan UX.
+
+### Respons Otorisasi yang Ditingkatkan
+>Respons otorisasi yang ditingkatkan diterapkan oleh <a href="https://github.com/garygreen">Gary Green</a>.
+
+Dalam rilis Laravel sebelumnya, sulit untuk mengambil dan mengekspos pesan otorisasi khusus kepada pengguna akhir. Ini membuat sulit untuk menjelaskan kepada pengguna akhir persis mengapa permintaan tertentu ditolak. Di Laravel 6, ini sekarang jauh lebih mudah menggunakan pesan respons otorisasi dan metode `Gate::inspect` yang baru. Misalnya, diberikan metode kebijakan berikut:
+
+```/**
+ * Tentukan apakah pengguna dapat melihat penerbangan yang diberikan.
+ *
+ * @param  \App\User  $user
+ * @param  \App\Flight  $flight
+ * @return mixed
+ */
+public function view(User $user, Flight $flight)
+{
+    return $this->deny('Explanation of denial.');
+}
+```
+
+Respons dan pesan kebijakan otorisasi dapat dengan mudah diambil menggunakan metode `Gate::inspect`:
+
+```$response = Gate::inspect('view', $flight);
+
+if ($response->allowed()) {
+    // User is authorized to view the flight...
+}
+
+if ($response->denied()) {
+    echo $response->message();
+}
+```
+
