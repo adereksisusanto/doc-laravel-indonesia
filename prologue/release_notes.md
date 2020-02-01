@@ -3,6 +3,12 @@
 - [Kebijakan Dukungan]()
 - [Laravel 6]()
 
+<ul>
+<li><a href="#versioning-scheme">Versioning Scheme</a></li>
+<li><a href="#support-policy">Support Policy</a></li>
+<li><a href="#laravel-6">Laravel 6</a></li>
+</ul>
+
 ## Skema Pembuatan Versi
 Laravel dan paket pihak pertama lainnya mengikuti [Semantic Versioning](https://semver.org/). Rilis kerangka utama dirilis setiap enam bulan (Februari dan Agustus), sementara rilis minor dan tambalan dapat dirilis sesering setiap minggu. Rilis minor dan tambalan tidak boleh berisi pemecahan perubahan.
 
@@ -53,3 +59,9 @@ Untuk rilis LTS, seperti Laravel 6, perbaikan bug disediakan selama 2 tahun dan 
 </tr>
 </tbody>
 </table>
+
+<h2><a href="#laravel-6">Laravel 6</a></h2>
+Laravel 6 (LTS) melanjutkan peningkatan yang dibuat di Laravel 5.8 dengan memperkenalkan versi semantik, kompatibilitas dengan Laravel Vapor, peningkatan respons otorisasi, middleware pekerjaan, koleksi malas, peningkatan subquery, ekstraksi perancah ujung depan ke paket komposer `laravel / framework`, dan berbagai perbaikan bug lainnya dan peningkatan kegunaan.
+
+### Versi Semantik
+Paket Laravel framework (`laravel / framework`) sekarang mengikuti standar versi semantik. Ini membuat kerangka konsisten dengan paket Laravel pihak pertama lainnya yang sudah mengikuti standar versi ini. Siklus rilis Laravel akan tetap tidak berubah.
