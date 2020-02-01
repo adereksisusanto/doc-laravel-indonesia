@@ -10,9 +10,9 @@ Laravel dan paket pihak pertama lainnya mengikuti <a href="https://semver.org/">
 
 Saat mereferensikan framework Laravel atau komponen-komponennya dari aplikasi atau paket Anda, Anda harus selalu menggunakan batasan versi seperti ^<b>6.0</b>, karena rilis utama Laravel menyertakan perubahan yang melanggar. Namun, kami berusaha untuk selalu memastikan Anda dapat memperbarui ke rilis utama baru dalam satu hari atau kurang.
 
-<h2><a href="#kebijakan-dukungan"># Kebijakan Dukungan</a></h2>
+<h2><a href="#kebijakan-dukungan">Kebijakan Dukungan</a></h2>
 Untuk rilis LTS, seperti Laravel 6, perbaikan bug disediakan selama 2 tahun dan perbaikan keamanan disediakan selama 3 tahun. Rilis ini menyediakan jendela dukungan dan pemeliharaan terpanjang. Untuk rilis umum, perbaikan bug diberikan selama 6 bulan dan perbaikan keamanan disediakan selama 1 tahun. Untuk semua perpustakaan tambahan, termasuk Lumen, hanya rilis terbaru yang menerima perbaikan bug. Selain itu, tinjau versi database yang <a href="/database/getting_started.md">didukung oleh Laravel</a>.
-
+<br>
 <table>
 <thead>
 <tr>
@@ -64,4 +64,5 @@ Paket Laravel framework (`laravel / framework`) sekarang mengikuti standar <a hr
 
 ### Kompatibilitas Laravel Vapor
 >Laravel Vapor dibangun oleh <a href="https://github.com/taylorotwell">Taylor Otwell</a>
+
 Laravel 6 menyediakan kompatibilitas dengan <a href="https://vapor.laravel.com/">Laravel Vapor</a>, sebuah platform penyebaran tanpa server skala-otomatis untuk Laravel. Vapor mengabstraksikan kompleksitas mengelola aplikasi Laravel pada AWS Lambda, serta menghubungkan aplikasi-aplikasi tersebut dengan antrian SQS, basis data, klaster Redis, jaringan, CloudFront CDN, dan banyak lagi.
